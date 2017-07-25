@@ -1,0 +1,10 @@
+{
+    "balance": {
+        "id": "BTC",
+        "amount": ["0.0", "BTC"],
+        "available_amount": ["0.0", "BTC"],
+        "frozen_amount": ["0.0", "BTC"],
+        "pending_withdraw_amount": ["0.0", "BTC"],
+        "account_id": 10620
+    }
+}

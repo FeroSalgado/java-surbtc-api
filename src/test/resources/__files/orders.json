@@ -1,0 +1,158 @@
+{
+    "meta": {
+        "total_pages": 1,
+        "total_count": 5,
+        "current_page": 1
+    },
+    "orders": [{
+        "id": 3414989,
+        "type": "Bid",
+        "state": "traded",
+        "created_at": "2017-06-20T23:32:11.189Z",
+        "market_id": 1,
+        "account_id": 10620,
+        "fee_currency": "BTC",
+        "price_type": "market",
+        "limit": null,
+        "amount": [
+            "0.00000001",
+            "BTC"
+        ],
+        "original_amount": [
+            "0.07724633",
+            "BTC"
+        ],
+        "traded_amount": [
+            "0.07724632",
+            "BTC"
+        ],
+        "total_exchanged": [
+            "150000.0",
+            "CLP"
+        ],
+        "paid_fee": [
+            "0.00061796",
+            "BTC"
+        ]
+    }, {
+        "id": 3402400,
+        "type": "Bid",
+        "state": "traded",
+        "created_at": "2017-06-16T23:12:11.954Z",
+        "market_id": 1,
+        "account_id": 10620,
+        "fee_currency": "BTC",
+        "price_type": "market",
+        "limit": null,
+        "amount": [
+            "0.0",
+            "BTC"
+        ],
+        "original_amount": [
+            "0.08511377",
+            "BTC"
+        ],
+        "traded_amount": [
+            "0.08511377",
+            "BTC"
+        ],
+        "total_exchanged": [
+            "150000.0",
+            "CLP"
+        ],
+        "paid_fee": [
+            "0.00068091",
+            "BTC"
+        ]
+    }, {
+        "id": 3396650,
+        "type": "Bid",
+        "state": "traded",
+        "created_at": "2017-06-15T15:48:36.816Z",
+        "market_id": 1,
+        "account_id": 10620,
+        "fee_currency": "BTC",
+        "price_type": "market",
+        "limit": null,
+        "amount": [
+            "0.00000001",
+            "BTC"
+        ],
+        "original_amount": [
+            "0.06397607",
+            "BTC"
+        ],
+        "traded_amount": [
+            "0.06397606",
+            "BTC"
+        ],
+        "total_exchanged": [
+            "99999.99",
+            "CLP"
+        ],
+        "paid_fee": [
+            "0.0005118",
+            "BTC"
+        ]
+    }, {
+        "id": 3336469,
+        "type": "Bid",
+        "state": "traded",
+        "created_at": "2017-06-01T19:46:48.597Z",
+        "market_id": 1,
+        "account_id": 10620,
+        "fee_currency": "BTC",
+        "price_type": "market",
+        "limit": null,
+        "amount": [
+            "0.0",
+            "BTC"
+        ],
+        "original_amount": [
+            "0.02241799",
+            "BTC"
+        ],
+        "traded_amount": [
+            "0.02241799",
+            "BTC"
+        ],
+        "total_exchanged": [
+            "39635.01",
+            "CLP"
+        ],
+        "paid_fee": [
+            "0.00017934",
+            "BTC"
+        ]
+    }, {
+        "id": 3327024,
+        "type": "Bid",
+        "state": "traded",
+        "created_at": "2017-05-29T15:51:13.943Z",
+        "market_id": 1,
+        "account_id": 10620,
+        "fee_currency": "BTC",
+        "price_type": "market",
+        "limit": null,
+        "amount": [
+            "0.00000001",
+            "BTC"
+        ],
+        "original_amount": [
+            "0.10928962",
+            "BTC"
+        ],
+        "traded_amount": [
+            "0.10928961",
+            "BTC"
+        ],
+        "total_exchanged": [
+            "199999.99",
+            "CLP"
+        ],
+        "paid_fee": [
+            "0.00087431",
+            "BTC"
+        ]
+    }]
+}

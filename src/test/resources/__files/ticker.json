@@ -1,0 +1,10 @@
+{
+    "ticker": {
+        "last_price": ["1889000.0", "CLP"],
+        "min_ask": ["1889000.0", "CLP"],
+        "max_bid": ["1868711.0", "CLP"],
+        "volume": ["42.19863621", "BTC"],
+        "price_variation_24h": "0.048",
+        "price_variation_7d": "0.03"
+    }
+}

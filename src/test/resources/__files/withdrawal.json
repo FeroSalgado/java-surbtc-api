@@ -1,0 +1,15 @@
+{
+    "withdrawal": {
+        "id": null,
+        "state": "invalid",
+        "currency": "BTC",
+        "created_at": null,
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": null,
+            "tx_hash": null
+        },
+        "amount": ["99999.99915", "BTC"],
+        "fee": ["0.00085", "BTC"]
+    }
+}

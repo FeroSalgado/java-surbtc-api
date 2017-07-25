@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "total_pages": 1,
+        "total_count": 5,
+        "current_page": 1
+    },
+    "withdrawals": [{
+        "id": 27521,
+        "state": "confirmed",
+        "currency": "BTC",
+        "created_at": "2017-06-20T23:33:24.972Z",
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": "14CngypVuDztXTRZ8ZLYKcGwFSKqRNv3Tn",
+            "tx_hash": "b3b0b65550eebbff308f37549398bafad23fbab09aaed06112e0611e9c34f681"
+        },
+        "amount": ["0.07512836", "BTC"],
+        "fee": ["0.0015", "BTC"]
+    }, {
+        "id": 26983,
+        "state": "confirmed",
+        "currency": "BTC",
+        "created_at": "2017-06-16T23:15:16.515Z",
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": "14CngypVuDztXTRZ8ZLYKcGwFSKqRNv3Tn",
+            "tx_hash": "105e2a82b365613aff6a48b33f10cc7362bfd2e49e464e79c623cc7aed0567b3"
+        },
+        "amount": ["0.08243286", "BTC"],
+        "fee": ["0.002", "BTC"]
+    }, {
+        "id": 26684,
+        "state": "confirmed",
+        "currency": "BTC",
+        "created_at": "2017-06-15T15:51:21.616Z",
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": "14CngypVuDztXTRZ8ZLYKcGwFSKqRNv3Tn",
+            "tx_hash": "3de2d4b4033a34bc529104361109486224a9c0c3294a8bb87f967d5fc1908259"
+        },
+        "amount": ["0.06146426", "BTC"],
+        "fee": ["0.002", "BTC"]
+    }, {
+        "id": 24257,
+        "state": "confirmed",
+        "currency": "BTC",
+        "created_at": "2017-06-01T19:50:59.345Z",
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": "14CngypVuDztXTRZ8ZLYKcGwFSKqRNv3Tn",
+            "tx_hash": "ee1644c0e4a3f6512202c28a21893186aaad131ccf06d3e4561b6c9a960dd19f"
+        },
+        "amount": ["0.02023865", "BTC"],
+        "fee": ["0.002", "BTC"]
+    }, {
+        "id": 23659,
+        "state": "confirmed",
+        "currency": "BTC",
+        "created_at": "2017-05-29T15:56:32.145Z",
+        "withdrawal_data": {
+            "type": "bitcoin_withdrawal_data",
+            "target_address": "14CngypVuDztXTRZ8ZLYKcGwFSKqRNv3Tn",
+            "tx_hash": "80d35e4a53ff37d7252aa38b09105b230c4d066c0ac0a7b4f0596415f646dd37"
+        },
+        "amount": ["0.1064153", "BTC"],
+        "fee": ["0.002", "BTC"]
+    }]
+}
