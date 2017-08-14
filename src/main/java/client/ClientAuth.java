@@ -25,9 +25,9 @@ import model.Market;
 import model.Markets;
 import model.OrderBook;
 import model.Orders;
-import model.SimulateWithdrawal;
+import model.Withdrawal;
 import model.Ticker;
-import util.Base;
+import util.HttpBase;
 import util.Common;
 import util.Server;
 
@@ -38,18 +38,18 @@ public class ClientAuth {
 	private Server serverApi;
 	
 	
-	private Base base;
+	private HttpBase httpBase;
 	private static final String HMAC_SHA384_ALGORITHM = "HmacSHA384";
 	
 	public ClientAuth(String ApiKey, String ApiSecret){
-		base = new Base();
+		httpBase = new HttpBase();
 		this.ApiKey = ApiKey;
 		this.ApiSecret = ApiSecret;
 		this.serverApi = SURBTCServer.server;
 	}
 	
 	public ClientAuth(String ApiKey, String ApiSecret, Server serverApi){
-		base = new Base();
+		httpBase = new HttpBase();
 		this.ApiKey = ApiKey;
 		this.ApiSecret = ApiSecret;
 		this.serverApi = serverApi;
@@ -58,12 +58,12 @@ public class ClientAuth {
 	public Ticker ticker(String market) 
 			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.TICKER,market);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.TICKER,market);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		Ticker ticker = gson.fromJson(response.get("ticker").toString()
@@ -75,12 +75,12 @@ public class ClientAuth {
 	public OrderBook orderBook(String market) 
 			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.ORDER_BOOK,market);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.ORDER_BOOK,market);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		OrderBook orderBook = gson.fromJson(response.get("order_book").toString()
@@ -92,12 +92,12 @@ public class ClientAuth {
 	public Markets markets() 
 			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.MARKETS,"");
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.MARKETS,"");
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		Markets Markets = gson.fromJson(response.toJSONString()
@@ -109,12 +109,12 @@ public class ClientAuth {
 	public Market marketDetail(String market) 
 			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.MARKET_DETAILS,market);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.MARKET_DETAILS,market);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		Market marketDetail = gson.fromJson(response.get("market").toString()
@@ -126,12 +126,12 @@ public class ClientAuth {
 	public Balances balances() 
 			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.BALANCES,"");
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.BALANCES,"");
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		Balances balances = gson.fromJson(response.toJSONString()
@@ -143,12 +143,12 @@ public class ClientAuth {
 	public Balance balanceDetail(String currency) 
 			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.BALANCE_DETAIL,currency);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.BALANCE_DETAIL,currency);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();
 		Balance balanceDetail = gson.fromJson(response.get("balance").toString()
@@ -160,12 +160,12 @@ public class ClientAuth {
 	public Orders orders(String market)
 		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.ORDERS,market);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.ORDERS,market);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		Gson gson = new Gson();		
 		Orders orders = gson.fromJson(response.toJSONString()
@@ -177,12 +177,12 @@ public class ClientAuth {
 	public void depositHistory(String currency)
 		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 			
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.DEPOSITS,currency);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.DEPOSITS,currency);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		System.out.println(response.toJSONString());
 	}
@@ -190,12 +190,12 @@ public class ClientAuth {
 	public void withdrawalHistory(String currency)
 		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
 			
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.WITHDRAWAL,currency);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.WITHDRAWAL,currency);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("GET", path);
-		JSONObject response = base.get(url,header);
+		JSONObject response = httpBase.get(url,header);
 		
 		System.out.println(response.toJSONString());
 	}
@@ -205,19 +205,19 @@ public class ClientAuth {
 		
 		Map<String, Object> payload = new HashMap<String, Object>();
 			
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.RECEIVE_ADDRESSES,currency);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.RECEIVE_ADDRESSES,currency);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("POST", path, payload);
-		JSONObject response = base.post(url,header,payload);
+		JSONObject response = httpBase.post(url,header,payload);
 		
 		System.out.println(url);
 		System.out.println(response.toJSONString());
 	}
 	
 	
-	public SimulateWithdrawal simulateWithdrawal(String currency, float amount) 
+	public Withdrawal simulateWithdrawal(String currency, float amount) 
 			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
 		
 		Map<String, Object> payload = new HashMap<String, Object>();
@@ -226,18 +226,18 @@ public class ClientAuth {
 		payload.put("simulate", true);
 		payload.put("amount_includes_fee", true);
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.WITHDRAWAL, currency);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.WITHDRAWAL, currency);
 		String url = urlpath[0];
 		String path = urlpath[1];
 		
 		Header header = signPayload("POST", path, payload);
-		JSONObject response = base.post(url,header,payload);
+		JSONObject response = httpBase.post(url,header,payload);
 		
 		Gson gson = new Gson();
-		SimulateWithdrawal simulateWithdrawal = gson.fromJson(response.get("withdrawal").toString()
-				,SimulateWithdrawal.class);
+		Withdrawal withdrawal = gson.fromJson(response.get("withdrawal").toString()
+				,Withdrawal.class);
 		
-		return simulateWithdrawal;
+		return withdrawal;
 	}
 	
 	@SuppressWarnings("unchecked")

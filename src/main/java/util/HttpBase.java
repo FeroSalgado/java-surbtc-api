@@ -13,6 +13,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -20,7 +21,7 @@ import org.json.simple.JSONObject;
 
 import client.Header;
 
-public class Base {
+public class HttpBase {
 	
 	public static final String APIURLPATTERN = "%s/%s";
 	
@@ -69,6 +70,47 @@ public class Base {
 		
 		post.setEntity(StringEntity);
 		HttpResponse response = client.execute(post);
+		
+		BufferedReader rd = new BufferedReader(
+		        new InputStreamReader(response.getEntity().getContent()));
+
+		StringBuffer result = new StringBuffer();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			result.append(line);
+		}
+		
+		HashMap<String,Object> hasMapResult =
+		        new ObjectMapper().readValue(result.toString(), HashMap.class);
+		
+		JSONObject jsonObjectResult = new JSONObject(hasMapResult);
+		
+		return jsonObjectResult;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject put(String url, Header header, Map<String, Object> data) 
+			throws ClientProtocolException, IOException{
+		
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPut put = new HttpPut(url);
+		
+		JSONObject jsonObject = new JSONObject();
+		 
+		for (Map.Entry<String, Object> entry : data.entrySet()){
+			jsonObject.put(entry.getKey(),entry.getValue());
+		}
+		
+		StringEntity StringEntity = new StringEntity(jsonObject.toJSONString());
+		StringEntity.setContentType(Header.getContent_Type());
+		
+		put.addHeader("X-SBTC-APIKEY",header.getX_SBTC_APIKEY());
+		put.addHeader("X-SBTC-NONCE",header.getX_SBTC_NONCE());
+		put.addHeader("X-SBTC-SIGNATURE",header.getX_SBTC_SIGNATURE());
+		put.addHeader("Accept",Header.getAccept());
+		
+		put.setEntity(StringEntity);
+		HttpResponse response = client.execute(put);
 		
 		BufferedReader rd = new BufferedReader(
 		        new InputStreamReader(response.getEntity().getContent()));

@@ -12,31 +12,31 @@ import com.google.gson.Gson;
 import api.SURBTCServer;
 import constant.Path;
 import model.Ticker;
-import util.Base;
+import util.HttpBase;
 import util.Server;
 
 public class ClientPublic {
 	
-	private Base base;
+	private HttpBase httpBase;
 	private Server serverApi;
 	
 	public ClientPublic(){
-		base = new Base();
+		httpBase = new HttpBase();
 		this.serverApi = SURBTCServer.server;
 	}
 	
 	public ClientPublic(Server serverApi){
-		base = new Base();
+		httpBase = new HttpBase();
 		this.serverApi = serverApi;
 	}
 	
 	public Ticker ticker(String market) 
 			throws ClientProtocolException, IOException{
 		
-		String urlpath[] = base.urlPathFor(this.serverApi.getUrl(),Path.TICKER,market);
+		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.TICKER,market);
 		String url = urlpath[0];
 		
-		JSONObject response = base.get(url);
+		JSONObject response = httpBase.get(url);
 		
 		Gson gson = new Gson();
 		Ticker ticker = gson.fromJson(response.get("ticker").toString()

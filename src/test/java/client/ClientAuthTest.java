@@ -13,7 +13,7 @@ import model.Market;
 import model.Markets;
 import model.OrderBook;
 import model.Orders;
-import model.SimulateWithdrawal;
+import model.Withdrawal;
 import model.Ticker;
 import util.Server;
 
@@ -224,9 +224,9 @@ public class ClientAuthTest {
 
 			ClientAuth clientAuth = SURBTC.Auth("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 					"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", serverApi);
-			SimulateWithdrawal simulateWithdrawal = clientAuth.simulateWithdrawal("BTC",100000);
+			Withdrawal withdrawal = clientAuth.simulateWithdrawal("BTC",100000);
 			
-            assertThat(simulateWithdrawal.getFee().getAmount(),
+            assertThat(withdrawal.getFee().getAmount(),
                     is(0.00085));
 	}
 }
