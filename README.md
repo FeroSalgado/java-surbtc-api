@@ -23,3 +23,19 @@ Include the following in your pom.xml
 ClientAuth clientAuth = new ClientAuth(ApiKey,ApiSecret);
 Ticker ticker = clientAuth.ticker("BTC-CLP");
 ```
+### Developed functions
+ticker(String market)
+
+orderBook(String market)
+ 
+markets()
+
+marketDetail(String market)
+
+balances()
+
+balanceDetail(String currency)
+
+orders(String market)
+
+simulateWithdrawal(String currency, float amount)
