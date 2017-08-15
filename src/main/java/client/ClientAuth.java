@@ -18,7 +18,11 @@ import org.json.simple.JSONObject;
 import com.google.gson.Gson;
 
 import api.SURBTCServer;
+import constant.CurrencyValues;
+import constant.MarketValues;
 import constant.Path;
+import error.InvalidCurrencyException;
+import error.InvalidMarketException;
 import model.Balance;
 import model.Balances;
 import model.Market;
@@ -56,7 +60,10 @@ public class ClientAuth {
 	}
 	
 	public Ticker ticker(String market) 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
+		
+		if(!MarketValues.isMarket(market))
+			throw new InvalidMarketException();
 		
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.TICKER,market);
 		String url = urlpath[0];
@@ -73,7 +80,10 @@ public class ClientAuth {
 	}
 	
 	public OrderBook orderBook(String market) 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
+		
+		if(!MarketValues.isMarket(market))
+			throw new InvalidMarketException();
 		
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.ORDER_BOOK,market);
 		String url = urlpath[0];
@@ -107,7 +117,10 @@ public class ClientAuth {
 	}
 	
 	public Market marketDetail(String market) 
-			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
+		
+		if(!MarketValues.isMarket(market))
+			throw new InvalidMarketException();
 		
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.MARKET_DETAILS,market);
 		String url = urlpath[0];
@@ -141,7 +154,10 @@ public class ClientAuth {
 	}
 	
 	public Balance balanceDetail(String currency) 
-			throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
+		
+		if(!CurrencyValues.isCurrency(currency))
+			throw new InvalidCurrencyException();
 		
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.BALANCE_DETAIL,currency);
 		String url = urlpath[0];
@@ -158,7 +174,10 @@ public class ClientAuth {
 	}
 	
 	public Orders orders(String market)
-		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+		throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
+		
+		if(!MarketValues.isMarket(market))
+			throw new InvalidMarketException();
 		
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.ORDERS,market);
 		String url = urlpath[0];
@@ -175,7 +194,10 @@ public class ClientAuth {
 	}
 	
 	public void depositHistory(String currency)
-		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+		throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
+		
+		if(!CurrencyValues.isCurrency(currency))
+			throw new InvalidCurrencyException();
 			
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.DEPOSITS,currency);
 		String url = urlpath[0];
@@ -188,7 +210,10 @@ public class ClientAuth {
 	}
 	
 	public void withdrawalHistory(String currency)
-		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+		throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
+		
+		if(!CurrencyValues.isCurrency(currency))
+			throw new InvalidCurrencyException();
 			
 		String urlpath[] = httpBase.urlPathFor(this.serverApi.getUrl(),Path.WITHDRAWAL,currency);
 		String url = urlpath[0];
@@ -201,7 +226,10 @@ public class ClientAuth {
 	}
 	
 	public void receiveAddress(String currency)
-		throws InvalidKeyException, NoSuchAlgorithmException, ClientProtocolException, IOException{
+		throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
+		
+		if(!CurrencyValues.isCurrency(currency))
+			throw new InvalidCurrencyException();
 		
 		Map<String, Object> payload = new HashMap<String, Object>();
 			
@@ -218,7 +246,10 @@ public class ClientAuth {
 	
 	
 	public Withdrawal simulateWithdrawal(String currency, float amount) 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
+		
+		if(!CurrencyValues.isCurrency(currency))
+			throw new InvalidCurrencyException();
 		
 		Map<String, Object> payload = new HashMap<String, Object>();
 		payload.put("currency", currency);

@@ -7,6 +7,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 
 import api.SURBTC;
+import error.InvalidCurrencyException;
+import error.InvalidMarketException;
 import model.Balance;
 import model.Balances;
 import model.Market;
@@ -32,7 +34,7 @@ public class ClientAuthTest {
     
 	@Test
 	public void tickerTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
 		
 			wm.stubFor(get(urlEqualTo("/api/v2/markets/BTC-CLP/ticker"))			
 			.willReturn(aResponse()
@@ -57,7 +59,7 @@ public class ClientAuthTest {
 	
 	@Test
 	public void orderBookTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
 		
 			wm.stubFor(get(urlEqualTo("/api/v2/markets/BTC-CLP/order_book"))			
 			.willReturn(aResponse()
@@ -107,7 +109,7 @@ public class ClientAuthTest {
 	
 	@Test
 	public void marketDetailTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
 		
 			wm.stubFor(get(urlEqualTo("/api/v2/markets/BTC-CLP"))			
 			.willReturn(aResponse()
@@ -157,7 +159,7 @@ public class ClientAuthTest {
 	
 	@Test
 	public void balanceDetailTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
 		
 			wm.stubFor(get(urlEqualTo("/api/v2/balances/BTC"))			
 			.willReturn(aResponse()
@@ -182,7 +184,7 @@ public class ClientAuthTest {
 	
 	@Test
 	public void ordersTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidMarketException{
 		
 			wm.stubFor(get(urlEqualTo("/api/v2/markets/BTC-CLP/orders"))
 			.willReturn(aResponse()
@@ -207,7 +209,7 @@ public class ClientAuthTest {
 	
 	@Test
 	public void simulateWithdrawalTest() 
-			throws InvalidKeyException, NoSuchAlgorithmException, IOException{
+			throws InvalidKeyException, NoSuchAlgorithmException, IOException, InvalidCurrencyException{
 		
 			wm.stubFor(post(urlEqualTo("/api/v2/currencies/BTC/withdrawals"))			
 			.willReturn(aResponse()
